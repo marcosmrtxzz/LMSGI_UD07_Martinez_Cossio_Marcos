@@ -7,7 +7,7 @@
                         <div class="col-6">
                             <t t-set="information_block">
                                 <div groups="account.group_delivery_invoice_address" name="shipping_address_block">
-                                    <strong class="d-block mt-3">Shipping Address</strong>
+                                    <strong class="d-block mt-3">Dirección de envío</strong>
                                     <div t-field="o.partner_shipping_id" t-options="{&quot;widget&quot;: &quot;contact&quot;, &quot;fields&quot;: [&quot;address&quot;, &quot;name&quot;], &quot;no_marker&quot;: True}"/>
                                 </div>
                             </t>
@@ -24,14 +24,14 @@
                                 </div>
                             </t>
                         </div>
-                    </t>
+                    </t>Shipping Address
                     <t t-elif="o.partner_shipping_id and (o.partner_shipping_id == o.partner_id)">
                         <div class="offset-col-6 col-6" name="address_same_as_shipping">
                             <t t-set="address">
                                 <address class="mb-0" t-field="o.partner_id" t-options="{&quot;widget&quot;: &quot;contact&quot;, &quot;fields&quot;: [&quot;address&quot;, &quot;name&quot;], &quot;no_marker&quot;: True}"/>
                                 <div t-if="o.partner_id.vat" id="partner_vat_address_same_as_shipping">
                                     <t t-if="o.company_id.account_fiscal_country_id.vat_label" t-out="o.company_id.account_fiscal_country_id.vat_label" id="inv_tax_id_label"/>
-                                    <t t-else="">Tax ID</t>: <span t-field="o.partner_id.vat"/>
+                                    <t t-else="">Identificación fiscal</t>: <span t-field="o.partner_id.vat"/>
                                 </div>
                                 <div t-if="o.partner_id.country_code == 'MA' and o.partner_id.company_registry">
                                     ICE: <a t-field="o.partner_id.company_registry"/>
@@ -45,7 +45,7 @@
                                 <address class="mb-0" t-field="o.partner_id" t-options="{&quot;widget&quot;: &quot;contact&quot;, &quot;fields&quot;: [&quot;address&quot;, &quot;name&quot;], &quot;no_marker&quot;: True}"/>
                                 <div t-if="o.partner_id.vat" id="partner_vat_no_shipping">
                                     <t t-if="o.company_id.account_fiscal_country_id.vat_label" t-out="o.company_id.account_fiscal_country_id.vat_label" id="inv_tax_id_label"/>
-                                    <t t-else="">Tax ID</t>: <span t-field="o.partner_id.vat"/>
+                                    <t t-else="">Identificación fiscal</t>: <span t-field="o.partner_id.vat"/>
                                 </div>
                                 <div t-if="o.partner_id.country_code == 'MA' and o.partner_id.company_registry">
                                     ICE: <a t-field="o.partner_id.company_registry"/>
@@ -59,60 +59,60 @@
                         <t t-set="layout_document_title">
                             <t t-if="not proforma">
                                 <span t-if="o.move_type == 'out_invoice' and o.state == 'posted'">
-                                    <t name="invoice_title">Invoice</t>
+                                    <t name="invoice_title">Factura</t>
                                 </span>
                                 <span t-elif="o.move_type == 'out_invoice' and o.state == 'draft'">
-                                    <t name="draft_invoice_title">Draft Invoice</t>
+                                    <t name="draft_invoice_title">Borrador de factura</t>
                                 </span>
                                 <span t-elif="o.move_type == 'out_invoice' and o.state == 'cancel'">
-                                    <t name="cancelled_invoice_title">Cancelled Invoice</t>
+                                    <t name="cancelled_invoice_title">Factura cancelada</t>
                                 </span>
                                 <span t-elif="o.move_type == 'out_refund' and o.state == 'posted'">
-                                    <t name="credit_note_title">Credit Note</t>
+                                    <t name="credit_note_title">Nota de crédito</t>
                                 </span>
                                 <span t-elif="o.move_type == 'out_refund' and o.state == 'draft'">
-                                    <t name="draft_credit_note_title">Draft Credit Note</t>
+                                    <t name="draft_credit_note_title">Borrador de nota de crédito</t>
                                 </span>
                                 <span t-elif="o.move_type == 'out_refund' and o.state == 'cancel'">
-                                    <t name="cancelled_credit_note_title">Cancelled Credit Note</t>
+                                    <t name="cancelled_credit_note_title">Nota de crédito cancelada</t>
                                 </span>
                                 <span t-elif="o.move_type == 'in_refund' and not o.journal_id.is_self_billing">
-                                    <t name="vendor_credit_note_title">Vendor Credit Note</t>
+                                    <t name="vendor_credit_note_title">Nota de crédito del proveedor</t>
                                 </span>
                                 <span t-elif="o.move_type == 'in_refund' and o.journal_id.is_self_billing">
-                                    <t name="self_billing_credit_note_title">Self Billing Credit Note</t>
+                                    <t name="self_billing_credit_note_title">Nota de crédito de autofacturación</t>
                                 </span>
                                 <span t-elif="o.move_type == 'in_invoice' and not o.journal_id.is_self_billing">
-                                    <t name="vendor_bill_title">Vendor Bill</t>
+                                    <t name="vendor_bill_title">Factura del proveedor</t>
                                 </span>
                                 <span t-elif="o.move_type == 'in_invoice' and o.journal_id.is_self_billing">
-                                    <t name="self_billing_invoice_title">Self Billing</t>
+                                    <t name="self_billing_invoice_title">Autofacturación</t>
                                 </span>
                             </t>
                             <t t-else="">
                                 <span t-if="o.move_type == 'out_invoice' and o.state == 'posted'">
-                                    <t name="proforma_invoice_title">Proforma Invoice</t>
+                                    <t name="proforma_invoice_title">Factura de proforma</t>
                                 </span>
                                 <span t-elif="o.move_type == 'out_invoice' and o.state == 'draft'">
-                                    <t name="draft_proforma_invoice_title">Draft Proforma Invoice</t>
+                                    <t name="draft_proforma_invoice_title">Borrador de factura proforma</t>
                                 </span>
                                 <span t-elif="o.move_type == 'out_invoice' and o.state == 'cancel'">
-                                    <t name="cancelled_proforma_invoice_title">Cancelled Proforma Invoice</t>
+                                    <t name="cancelled_proforma_invoice_title">Factura proforma cancelada</t>
                                 </span>
                                 <span t-elif="o.move_type == 'out_refund' and o.state == 'posted'">
-                                    <t name="proforma_credit_note_title">Proforma Credit Note</t>
+                                    <t name="proforma_credit_note_title">Nota de crédito proforma</t>
                                 </span>
                                 <span t-elif="o.move_type == 'out_refund' and o.state == 'draft'">
-                                    <t name="draft_proforma_credit_note_title">Draft Proforma Credit Note</t>
+                                    <t name="draft_proforma_credit_note_title">Borrador de nota de crédito proforma</t>
                                 </span>
                                 <span t-elif="o.move_type == 'out_refund' and o.state == 'cancel'">
-                                    <t name="cancelled_proforma_credit_note_title">Cancelled Proforma Credit Note</t>
+                                    <t name="cancelled_proforma_credit_note_title">Nota de crédito proforma cancelada</t>
                                 </span>
                                 <span t-elif="o.move_type == 'in_refund'">
-                                    <t name="proforma_vendor_credit_note_title">Proforma Vendor Credit Note</t>
+                                    <t name="proforma_vendor_credit_note_title">Nota de crédito proforma del proveedor</t>
                                 </span>
                                 <span t-elif="o.move_type == 'in_invoice'">
-                                    <t name="proforma_vendor_bill_title">Proforma Vendor Bill</t>
+                                    <t name="proforma_vendor_bill_title">Factura proforma del proveedor</t>
                                 </span>
                             </t>
                             <span t-if="o.name and o.name != '/'" t-field="o.name">INV/2023/0001</span>
@@ -120,34 +120,34 @@
                         <div class="oe_structure"/>
                         <div id="informations" class="row mb-4" t-if="o.invoice_date or (o.invoice_date_due and o.move_type == 'out_invoice' and o.state == 'posted') or o.delivery_date or o.invoice_origin or o.partner_id.ref or o.ref or o.invoice_incoterm_id">
                             <div class="col" t-if="o.invoice_date" name="invoice_date">
-                                <t t-if="o.move_type == 'out_invoice'"><strong>Invoice Date</strong></t>
-                                <t t-elif="o.move_type == 'out_refund'"><strong>Credit Note Date</strong></t>
-                                <t t-elif="o.move_type == 'out_receipt'"><strong>Receipt Date</strong></t>
-                                <t t-else=""><strong>Date</strong></t>
+                                <t t-if="o.move_type == 'out_invoice'"><strong>Fecha de factura</strong></t>
+                                <t t-elif="o.move_type == 'out_refund'"><strong>Fecha de la nota de crédito</strong></t>
+                                <t t-elif="o.move_type == 'out_receipt'"><strong>Fecha de recepción</strong></t>
+                                <t t-else=""><strong>Fecha</strong></t>
                                 <div t-field="o.invoice_date">2023-09-12</div>
                             </div>
                             <div class="col" t-if="o.invoice_date_due and o.move_type == 'out_invoice' and o.state == 'posted'" name="due_date">
-                                <strong>Due Date</strong>
+                                <strong>dos citas</strong>
                                 <div t-field="o.invoice_date_due">2023-10-31</div>
                             </div>
                             <div class="col" t-if="o.taxable_supply_date and o.show_taxable_supply_date" name="taxable_supply_date">
-                                <strong>Taxable Supply</strong>
+                                <strong>Oferta sujeta a impuestos</strong>
                                 <div t-field="o.taxable_supply_date">2023-10-31</div>
                             </div>
                             <div class="col" t-if="o.delivery_date" name="delivery_date">
-                                <strong>Delivery Date</strong>
+                                <strong>Fecha de entrega</strong>
                                 <div t-field="o.delivery_date">2023-09-25</div>
                             </div>
                             <div class="col" t-if="o.invoice_origin" name="origin">
-                                <strong>Source</strong>
+                                <strong>Fuente</strong>
                                 <div t-field="o.invoice_origin">SO123</div>
                             </div>
                             <div class="col" t-if="o.partner_id.ref" name="customer_code">
-                                <strong>Customer Code</strong>
+                                <strong>Código de cliente</strong>
                                 <div t-field="o.partner_id.ref"/>
                             </div>
                             <div class="col" t-if="o.ref" name="reference">
-                                <strong>Reference</strong>
+                                <strong>Referencia</strong>
                                 <div t-field="o.ref">INV/2023/00001</div>
                             </div>
                             <div class="col" t-if="o.invoice_incoterm_id" name="incoterm_id">
@@ -167,15 +167,15 @@
                         <table class="o_has_total_table table o_main_table table-borderless mb-0" name="invoice_line_table">
                             <thead t-attf-style="#{has_long_desc and 'display: table-row-group;' or ''}">
                                 <tr>
-                                    <th name="th_description" class="text-start"><span>Description</span></th>
-                                    <th name="th_quantity" class="text-end"><span>Quantity</span></th>
+                                    <th name="th_description" class="text-start"><span>Descripcion</span></th>
+                                    <th name="th_quantity" class="text-end"><span>Cantidad</span></th>
                                     <th name="th_priceunit" t-attf-class="text-end text-nowrap {{ 'd-none d-md-table-cell' if report_type == 'html' else '' }}"><span>Unit Price</span></th>
                                     <th name="th_discount" t-if="display_discount" t-attf-class="text-end {{ 'd-none d-md-table-cell' if report_type == 'html' else '' }}">
                                         <span>Disc.%</span>
                                     </th>
                                     <th name="th_taxes" t-if="display_taxes" t-attf-class="text-end {{ 'd-none d-md-table-cell' if report_type == 'html' else '' }}"><span>Taxes</span></th>
                                     <th name="th_subtotal" class="text-end">
-                                        <span>Amount</span>
+                                        <span>Cantidad</span>
                                     </th>
                                 </tr>
                             </thead>
@@ -216,7 +216,7 @@
                                                 </td>
                                                 <td name="td_quantity" class="o_td_quantity text-end">
                                                     <span t-field="line.quantity" class="text-nowrap">3.00</span>
-                                                    <span t-field="line.product_uom_id" groups="uom.group_uom">units</span>
+                                                    <span t-field="line.product_uom_id" groups="uom.group_uom">Unidades</span>
                                                     <span t-if="line.product_uom_id != line.product_id.uom_id" groups="uom.group_uom" class="text-muted small">
                                                         <br/>
                                                         <t t-set="product_uom_qty" t-value="line.product_uom_id._compute_quantity(line.quantity, line.product_id.uom_id)"/>
@@ -282,11 +282,11 @@
                                             <tr t-att-class="                                                 'fw-bolder o_line_section' if grouped_line.get('display_type') == 'line_section' and not hide_details else                                                 'fw-bold o_line_subsection' if grouped_line.get('display_type') == 'line_subsection' and not hide_details else                                                 ''">
                                                 <!-- For desktop -->
                                                 <td name="account_invoice_line_name_grouped_desktop" t-att-colspan="line_colspan" t-attf-class="{{'d-none d-md-table-cell' if report_type == 'html' else ''}} {{padding_class}}">
-                                                    <span t-out="grouped_line['name']" t-options="{'widget': 'text'}">Group 1</span>
+                                                    <span t-out="grouped_line['name']" t-options="{'widget': 'text'}">Grupo 1</span>
                                                 </td>
                                                 <!-- For mobile -->
                                                 <td name="account_invoice_line_name_grouped" t-att-colspan="2 if grouped_line['display_type'] != 'product' else 1" t-attf-class="{{'d-md-none d-table-cell' if report_type == 'html' else 'd-none'}} {{padding_class}}">
-                                                    <span t-out="grouped_line['name']" t-options="{'widget': 'text'}">Group 1</span>
+                                                    <span t-out="grouped_line['name']" t-options="{'widget': 'text'}">Grupo 1</span>
                                                 </td>
                                                 <td name="td_quantity_grouped" colspan="1" t-if="hide_details or (hide_prices and grouped_line['display_type'] not in ('line_section', 'line_subsection', 'line_note'))" class="o_td_quantity text-end">
                                                     <!-- If line is hide composition, always show 1 unit -->
@@ -298,7 +298,7 @@
                                                     <div t-if="hide_prices and grouped_line['display_type'] not in ('line_section', 'line_subsection')">
                                                         <span t-out="grouped_line['quantity']" t-options="{'widget': 'float', 'decimal_precision': 'Product Unit'}">1.00</span>
                                                         <t t-if="grouped_line.get('line_uom')">
-                                                            <span t-out="grouped_line['line_uom'].display_name" groups="uom.group_uom">Unit</span>
+                                                            <span t-out="grouped_line['line_uom'].display_name" groups="uom.group_uom">Unidad</span>
                                                             <span t-if="grouped_line.get('product_uom') != grouped_line['line_uom']" groups="uom.group_uom" class="text-muted small">
                                                                 <br/>
                                                                 <t t-set="product_uom_qty" t-value="grouped_line['line_uom']._compute_quantity(grouped_line['quantity'], grouped_line['product_uom'])"/>
@@ -344,8 +344,8 @@
                                                         <tr t-if="payment_vals['is_exchange'] == 0">
                                                             <td>
                                                                 <i class="oe_form_field text-end oe_payment_label">
-                                                                    <t t-if="payment_vals['is_refund']">Reversed on </t>
-                                                                    <t t-else="">Paid on </t>
+                                                                    <t t-if="payment_vals['is_refund']">Reservar en </t>
+                                                                    <t t-else="">Pagado en </t>
                                                                     <t t-out="payment_vals['date']" t-options="{&quot;widget&quot;: &quot;date&quot;}">2021-09-19</t>
                                                                 </i>
                                                             </td>
@@ -356,7 +356,7 @@
                                                     </t>
                                                     <t t-if="len(payments_vals) &gt; 0">
                                                         <tr class="fw-bold">
-                                                            <td>Amount Due</td>
+                                                            <td>Monto adeudado</td>
                                                             <td class="text-end">
                                                                 <span t-field="o.amount_residual">11.05</span>
                                                             </td>
@@ -369,8 +369,8 @@
                                 </div>
                                 <div class="mb-2">
                                     <p class="text-end lh-sm" t-if="o.company_id.display_invoice_amount_total_words">
-                                        Total amount in words: <br/>
-                                        <small class="text-muted lh-sm"><span t-field="o.amount_total_words">Thirty one dollar and Five cents</span></small>
+                                        Cantidad total en palabras: <br/>
+                                        <small class="text-muted lh-sm"><span t-field="o.amount_total_words">Treinta y un dólares y cinco centavos</span></small>
                                     </p>
                                 </div>
 
@@ -416,7 +416,7 @@
                                                     <div>
                                                         <span t-out="term_index + 1">1</span> - Installment of
                                                         <t t-options="{&quot;widget&quot;: &quot;monetary&quot;, &quot;display_currency&quot;: o.currency_id}" t-out="term.get('amount')" class="text-end">31.05</t>
-                                                        <span> due on </span>
+                                                        <span> vencido el </span>
                                                         <t t-out="term.get('date')" class="text-start">2024-01-01</t>
                                                     </div>
                                                 </t>
@@ -426,9 +426,9 @@
                                 </div>
                                 <div class="mb-3" t-if="o.move_type in ('out_invoice', 'in_refund') and o.payment_reference">
                                     <p name="payment_communication">
-                                        Payment Communication: <span class="fw-bold" t-field="o.payment_reference">INV/2023/00001</span>
+                                        Comunicación de pago: <span class="fw-bold" t-field="o.payment_reference">INV/2023/00001</span>
                                         <t t-if="o.partner_bank_id">
-                                            <br/> on this account: <span t-field="o.partner_bank_id" class="fw-bold"/>
+                                            <br/> en esta cuenta: <span t-field="o.partner_bank_id" class="fw-bold"/>
                                         </t>
                                     </p>
                                 </div>
@@ -443,7 +443,7 @@
                                         </p>
                                     </div>
                                     <div class="d-inline text-muted lh-sm fst-italic" id="qrcode_info" t-if="qr_code_url">
-                                        <p>Scan this QR Code with<br/>your banking application</p>
+                                        <p>Escanee este código QR con<br/>tu aplicación bancaria</p>
                                     </div>
                                 </div>
                                 <t t-set="show_link_qr" t-value="o.display_link_qr_code and o.amount_residual"/>
@@ -457,8 +457,8 @@
                                         </p>
                                     </div>
                                     <div class="d-inline lh-sm" id="qrcode_info" t-if="portal_qr_code">
-                                        <p class="fw-bold mb-0">PAY IN A FLASH!</p>
-                                        <p class="text-muted fst-italic">Scan the QR code<br/>or click to pay online</p>
+                                        <p class="fw-bold mb-0">¡PAGA AL INSTANTE!</p>
+                                        <p class="text-muted fst-italic">Escanea el código QR<br/>o haga clic para pagar en línea</p>
                                     </div>
                                 </div>
                                 <!--terms and conditions-->
